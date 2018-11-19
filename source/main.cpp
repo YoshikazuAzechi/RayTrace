@@ -1,9 +1,13 @@
-#include <stdio.h>
+#include <iostream>
 
+#include "image.h"
+#include "vector3.h"
 
 int main()
 {
-    printf("Hello, world!");
+    Image image;
+    image.Dump();
+    
     getchar();
     return 0;
 }

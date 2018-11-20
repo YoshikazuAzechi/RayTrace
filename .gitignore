@@ -1,5 +1,5 @@
 # project
-#*.vscode
+*.vscode
 
 # build
 /build/*

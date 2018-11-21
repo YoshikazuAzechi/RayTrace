@@ -33,7 +33,7 @@ namespace ppm
         ss << "255" << endl;
 
         // Color data
-        for(int py = 0;py < image.GetHeight();++py)
+        for(int py = image.GetHeight() - 1;py >= 0;--py)
         {
             for(int px = 0;px < image.GetWidth();++px)
             {

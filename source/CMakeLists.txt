@@ -4,6 +4,7 @@ set(SRCS
     image.cpp
     vector3.cpp
     color.cpp
+    ray.cpp
     ppm.cpp)
 
 add_executable(${PROJECT_NAME} ${SRCS})

@@ -88,17 +88,17 @@ Vector3 Vector3::operator*(float t) const
     return Vector3(x * t, y * t, z * t);    
 }
 
-float Vector3::Dot(const Vector3& v) const
+float Vector3::Dot(const Vector3& v1, const Vector3& v2)
 {
-    return (x * v.x, y * v.y, z * v.z);
+    return (v1.x * v2.x + v1.y * v2.y +  v1.z * v2.z);
 }
 
-Vector3 Vector3::Cross(const Vector3& v) const
+Vector3 Vector3::Cross(const Vector3& v1, const Vector3& v2)
 {
     Vector3 retVector;
-    retVector.x = (y * v.z - z * v.y);
-    retVector.y = (z * v.x - x * v.z);
-    retVector.z = (x * v.y - y * v.x);
+    retVector.x = (v1.y * v2.z - v1.z * v2.y);
+    retVector.y = (v1.z * v2.x - v1.x * v2.z);
+    retVector.z = (v1.x * v2.y - v1.y * v2.x);
     return retVector;
 }
 

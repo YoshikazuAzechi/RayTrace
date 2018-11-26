@@ -24,8 +24,8 @@ public:
     Vector3 operator/(float t) const;
     Vector3 operator*(float t) const;
 
-    float Dot(const Vector3& v) const;
-    Vector3 Cross(const Vector3& v) const;
+    static float Dot(const Vector3& v1, const Vector3& v2);
+    static Vector3 Cross(const Vector3& v1, const Vector3& v2);
 
     float Length() const;
     float SqrLength() const;

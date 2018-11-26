@@ -5,7 +5,10 @@ set(SRCS
     vector3.cpp
     color.cpp
     ray.cpp
-    ppm.cpp)
+    sphere.cpp
+    ppm.cpp
+    world.cpp
+    object.cpp)
 
 add_executable(${PROJECT_NAME} ${SRCS})
 

@@ -3,4 +3,10 @@
 *.code-workspace
 
 # build
-/build/*
+build
+
+# image
+*.jpg
+*.png
+*.bmp
+*.tga

@@ -4,6 +4,8 @@
 
 レイトレースの練習
 
-## Viewer
+[参考書](https://www.amazon.co.jp/Tracing-Weekend-Minibooks-Book-English-ebook/dp/B01B5AODD8)
 
-[Online NetPBM Viewer](http://paulcuth.me.uk/netpbm-viewer)
+## image utility
+
+[nothings/stb](https://github.com/nothings/stb)

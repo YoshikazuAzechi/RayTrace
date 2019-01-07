@@ -24,17 +24,18 @@ void main()
     Vector3 screenWidth(4.0f, 0.0f, 0.0f);
     Vector3 screenHeight(0.0f, 2.0f, 0.0f);
     Vector3 screenLowerLeft = -(screenWidth / 2.0f + screenHeight / 2.0f);
+    screenLowerLeft.e[2] = 1.0f;
     // カメラ位置
     Vector3 cameraPosition(0.0f, 0.0f, 0.0f);
     
     // 各ピクセルに色を付ける
-    for(int j = ny - 1;j >= 0;--j)
+    for(int j = 0; j < ny; ++j)
     {
-        for(int i = 0;i < nx;++i)
+        for(int i = 0; i < nx; ++i)
         {
             // UV値
-            float u = float(i) / float(nx);
-            float v = float(j) / float(ny);
+            float u = float(i) / float(nx - 1);
+            float v = float(j) / float(ny - 1);
             
             // Ray(camera)
             Vector3 cameraForward = screenLowerLeft + screenWidth * u + screenHeight * v;
@@ -61,6 +62,6 @@ void main()
 
 Vector3 SkyColor(const Ray& ray)
 {
-    float t = 0.5f * (1.0f  + ray.direction.Normalized().Y());
-    return Vector3(1.0f, 1.0f, 1.0f) * (1.0f - t) + Vector3(0.5f, 0.7f, 1.0f) * t;
+    float t = 0.5f * (1.0f + ray.direction.Normalized().Y());
+    return Vector3(1.0f, 1.0f, 1.0f) * t + Vector3(0.5f, 0.7f, 1.0f) * (1.0f - t);
 }

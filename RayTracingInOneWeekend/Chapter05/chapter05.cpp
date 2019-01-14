@@ -5,13 +5,14 @@
 #include <cstdint>
 
 #include "ray.h"
+#include "world.h"
+#include "sphere.h"
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "../stb_image_write.h"
 
-Vector3 Color(const Ray& ray);
+Vector3 Color(const Ray& ray, World& world);
 Vector3 SkyColor(const Ray& ray);
-float HitSphere(const Vector3& center, float radius, const Ray& ray);
 
 void main()
 {
@@ -30,6 +31,10 @@ void main()
     // カメラ位置
     Vector3 cameraPosition(0.0f, 0.0f, 0.0f);
     
+    World world;
+    world.Add(new Sphere(Vector3(0.0f, 0.0f, 1.0f), 0.5f));
+    world.Add(new Sphere(Vector3(0.0f, 100.5f, 1.0f), -100.0f));
+        
     // 各ピクセルに色を付ける
     for(int j = 0; j < ny; ++j)
     {
@@ -44,7 +49,7 @@ void main()
             Ray ray(cameraPosition, cameraForward);
             
             // SkyColor
-            Vector3 color = Color(ray);
+            Vector3 color = Color(ray, world);
             
             int ir = int(255.99f * color.R());
             int ig = int(255.99f * color.G());
@@ -62,14 +67,12 @@ void main()
     delete[] buffer;
 }
 
-Vector3 Color(const Ray& ray)
+Vector3 Color(const Ray& ray, World& world)
 {
-    float t = HitSphere(Vector3(0.0f, 0.0f, 1.0f), 0.5f, ray);
-    if(t > 0.0f)
+    HitRecord hitRecord;
+    if(world.Hit(ray, 0.0f, 99999.0f, hitRecord))
     {
-        Vector3 normal = (ray.PointAt(t) - Vector3(0.0f, 0.0f, 1.0f)).Normalized();\
-        //normal.e[2] = -normal.e[2];
-        return (normal + Vector3(1.0f, 1.0f, 1.0f)) * 0.5f;
+        return (hitRecord.normal + Vector3(1.0f, 1.0f, 1.0f)) * 0.5f;
     }
     return SkyColor(ray);
 }
@@ -78,21 +81,4 @@ Vector3 SkyColor(const Ray& ray)
 {
     float t = 0.5f * (1.0f + ray.direction.Normalized().Y());
     return Vector3(1.0f, 1.0f, 1.0f) * t + Vector3(0.5f, 0.7f, 1.0f) * (1.0f - t);
-}
-
-// 球との交差チェック
-float HitSphere(const Vector3& center, float radius, const Ray& ray)
-{
-    Vector3 toCenter = ray.origin - center;
-    float a = Vector3::Dot(ray.direction, ray.direction);
-    float b = 2.0f * Vector3::Dot(toCenter, ray.direction);
-    float c = Vector3::Dot(toCenter, toCenter) - (radius * radius);
-    // 
-    float d = b * b - 4 * a * c;
-    if(d < 0.0f)
-    {
-        return -1.0f;
-    }
-    // 
-    return (-b - sqrtf(d)) / (2.0f * a);
 }

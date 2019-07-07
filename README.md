@@ -17,6 +17,11 @@
 #### Folder link
 
 - [Chapter01](https://github.com/YoshikazuAzechi/RayTrace/tree/develop/RayTracingInOneWeekend/Chapter01)
+- [Chapter02](https://github.com/YoshikazuAzechi/RayTrace/tree/develop/RayTracingInOneWeekend/Chapter02)
+- [Chapter03](https://github.com/YoshikazuAzechi/RayTrace/tree/develop/RayTracingInOneWeekend/Chapter03)
+- [Chapter04](https://github.com/YoshikazuAzechi/RayTrace/tree/develop/RayTracingInOneWeekend/Chapter04)
+- [Chapter05](https://github.com/YoshikazuAzechi/RayTrace/tree/develop/RayTracingInOneWeekend/Chapter05)
+- [Chapter06](https://github.com/YoshikazuAzechi/RayTrace/tree/develop/RayTracingInOneWeekend/Chapter06)
 
 ### RayTrace
 

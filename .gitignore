@@ -6,7 +6,6 @@
 build
 
 # image
-*.jpg
 *.png
 *.bmp
 *.tga
